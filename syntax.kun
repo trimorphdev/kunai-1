@@ -1,0 +1,58 @@
+# imports a module with the specified name.
+# 
+# If the specified library is not a part of the standard module, the module must be linked
+# using the correct CLI arguments.
+with modulename
+
+# the same is true with this import, but it also creates a pointer the the specified
+# properties of the module, to make them more easily accessable.
+with othermodulename { property1, property2 }
+
+# imports the specified file. If an absolute path is not specified it will look in the same
+# path as this file.
+#
+# For example, if this file was in `c:/users/myusername/mykunaimodule`, it would look for
+# the specified file at `c:/users/myusername/mykunaimodule/modulename.kun`.
+with "modulename.kun"
+
+# `vis` makes a class/variable/function accessable by other modules
+vis class className {
+
+  # since no value is defined, you must specify a type.
+  let myStr ~ string
+  
+  # since a value is defined, there is not reason to specify what type the variable is.
+  let myOtherStr = "my value :)"
+
+  # `vis` when used for a constructor makes the constructor accessable from outside the
+  # context of the class.
+  vis constructor(myStr ~ string) {
+    self.myStr = myStr
+  }
+
+  constructor() {
+    # construct used in this context calls the appropriate constructor for this class
+    # with the arguments specified.
+    construct("myString")
+  }
+
+  # `vis` in the context of a class makes a property accessable from outside of the
+  # context of the class, for example: `className.getMyStr` would be used to access
+  # the following function:
+  vis func getMyStr() ~ string {
+    return myStr
+  }
+
+}
+
+# every application must have one entry point function, which is called `entry`. This function will
+# be called when the application is ran, with the list of command-line arguments.
+#
+# Since the function does not return anything, we use the type `null`.
+#
+# The visibility of the function does not matter.
+func entry(args ~ string[]) ~ null {
+
+  # constructs an object of the type `className` with the specified arguments.
+  let myObject = construct className("myString")
+}
