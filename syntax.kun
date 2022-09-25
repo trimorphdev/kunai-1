@@ -1,14 +1,19 @@
-# imports a module with the specified name.
+# syntax.kun
+#
+# Note: This file is meant purely as an example to show the syntax of the Kunai programming language,
+# and everything in this file may not be the best or most efficient method of programming.
+
+# Imports a module with the specified name.
 # 
 # If the specified library is not a part of the standard module, the module must be linked
 # using the correct CLI arguments.
 with modulename
 
-# the same is true with this import, but it also creates a pointer the the specified
+# The same is true with this import, but it also creates a pointer the the specified
 # properties of the module, to make them more easily accessible.
 with othermodulename { property1, property2 }
 
-# imports the specified file. If an absolute path is not specified it will look in the same
+# Imports the specified file. If an absolute path is not specified it will look in the same
 # path as this file.
 #
 # For example, if this file was in `c:/users/myusername/mykunaimodule`, it would look for
@@ -18,10 +23,10 @@ with "modulename.kun"
 # `vis` makes a class/variable/function accessible by other modules
 vis class className {
 
-  # since no value is defined, you must specify a type.
+  # Since no value is defined, you must specify a type.
   let myStr ~ string
   
-  # since a value is defined, there is not reason to specify what type the variable is.
+  # Since a value is defined, there is not reason to specify what type the variable is.
   let myOtherStr = "my value :)"
 
   # `vis` when used for a constructor makes the constructor accessible from outside the
@@ -31,7 +36,7 @@ vis class className {
   }
 
   constructor() {
-    # construct used in this context calls the appropriate constructor for this class
+    # `construct` used in this context calls the appropriate constructor for this class
     # with the arguments specified.
     construct("myString")
   }
@@ -45,7 +50,7 @@ vis class className {
 
 }
 
-# every application must have one entry point function, which is called `entry`. This function will
+# Every Kunai application must have one entry point function, which is called `entry`. This function will
 # be called when the application is ran, with the list of command-line arguments.
 #
 # Since the function does not return anything, we use the type `null`.
@@ -53,6 +58,37 @@ vis class className {
 # The visibility of the function does not matter.
 func entry(args ~ string[]) ~ null {
 
-  # constructs an object of the type `className` with the specified arguments.
+  # Constructs an object of the type `className` with the specified arguments.
   let myObject = construct className("myString")
+
+  if (contains("printMyString", args)) {
+    # TODO: print `myObject.getMyStr()` to the command-line output.
+  }
+
+}
+
+# Functions can contain any amount of arguments, separated by commas(',').
+# 
+# This function returns the type of `bool`.
+func contains(object ~ string, list ~ string[]) ~ bool {
+
+  # Iterates through each item of the specified array, in this case the array is `list`.
+  #
+  # `i` is the object of the current iteration of the loop.
+  forall (i in list) {
+    
+    # Executes the code if the specified condition is `true`.
+    # 
+    # In this if statement the condition is `i == object`, which checks if `i` is the same as `object`.
+    if (i == object) {
+
+      # Because `i` is equal to `object` in this context, we use `return`, which ends the function and returns a value.
+      # Anything beyond a return statement in the context of the same function will no longer execute.
+      return true
+    }
+  }
+
+  # If the type of a function is not `null`, it must return an appropriately typed value at some point.
+  return false
+
 }
