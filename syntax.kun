@@ -5,7 +5,7 @@
 with modulename
 
 # the same is true with this import, but it also creates a pointer the the specified
-# properties of the module, to make them more easily accessable.
+# properties of the module, to make them more easily accessible.
 with othermodulename { property1, property2 }
 
 # imports the specified file. If an absolute path is not specified it will look in the same
@@ -15,7 +15,7 @@ with othermodulename { property1, property2 }
 # the specified file at `c:/users/myusername/mykunaimodule/modulename.kun`.
 with "modulename.kun"
 
-# `vis` makes a class/variable/function accessable by other modules
+# `vis` makes a class/variable/function accessible by other modules
 vis class className {
 
   # since no value is defined, you must specify a type.
@@ -24,7 +24,7 @@ vis class className {
   # since a value is defined, there is not reason to specify what type the variable is.
   let myOtherStr = "my value :)"
 
-  # `vis` when used for a constructor makes the constructor accessable from outside the
+  # `vis` when used for a constructor makes the constructor accessible from outside the
   # context of the class.
   vis constructor(myStr ~ string) {
     self.myStr = myStr
@@ -36,7 +36,7 @@ vis class className {
     construct("myString")
   }
 
-  # `vis` in the context of a class makes a property accessable from outside of the
+  # `vis` in the context of a class makes a property accessible from outside of the
   # context of the class, for example: `className.getMyStr` would be used to access
   # the following function:
   vis func getMyStr() ~ string {
