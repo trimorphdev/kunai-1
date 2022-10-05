@@ -1,7 +1,8 @@
 # syntax.kun
 #
 # Note: This file is meant purely as an example to show the syntax of the Kunai programming language,
-# and everything in this file may not be the best or most efficient method of programming.
+# and everything in this file may not be the best or most efficient method of programming, or
+# even make sense logically for that matter.
 
 # Imports a module with the specified name.
 # 
@@ -83,6 +84,10 @@ func entry(args ~ string[]) ~ null {
 
   if (contains("printMyString", args)) {
     # TODO: print `myObject.getMyStr()` to the command-line output.
+  
+  # executes the specified code if every previous condition was false.
+  } else {
+    # TODO: print something else to the output.
   }
 
 }
@@ -97,7 +102,7 @@ func contains(object ~ string, list ~ string[]) ~ bool {
   # `i` is the object of the current iteration of the loop.
   forall (i in list) {
     
-    # Executes the code if the specified condition is `true`.
+    # Executes the code if the specified condition is true.
     # 
     # In this if statement the condition is `i == object`, which checks if `i` is the same as `object`.
     if (i == object) {
