@@ -1,0 +1,9 @@
+vis func factorial(num ~ int64) ~ int64 {
+  let fact = 1
+
+  forall (let i = 1; i < num; i++) {
+    fact *= num
+  }
+
+  return fact
+}

@@ -1,0 +1,11 @@
+vis func range(start ~ int64, end ~ int64) ~ int64[] {
+  let arr = construct int64[]
+  let num = start
+
+  for (let i = 0; i < (end - start); i++) {
+    arr.push(num)
+    start++
+  }
+
+  return arr
+}
