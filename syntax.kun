@@ -58,8 +58,28 @@ vis class className {
 # The visibility of the function does not matter.
 func entry(args ~ string[]) ~ null {
 
+  let myObjectString ~ string
+
+  # Preprocessors
+  #
+  # If the condition is true at compile time, Kunai compiles the corresponding code.
+  $(TARGET == "android") 
+    myObjectString = "android"
+
+  # If the previous condition is false and the specified condition is true, Kunai compiles the corresponding
+  # code.
+  $(? TARGET == "windows") 
+    myObjectString = "windows"
+
+  # If none of the previous conditions are true, Kunai compiles the corresponding code.
+  $(!)
+    myObjectString = "unknown"
+
+  # Ends the preprocessor.
+  $(;)
+
   # Constructs an object of the type `className` with the specified arguments.
-  let myObject = construct className("myString")
+  let myObject = construct className(myObjectString)
 
   if (contains("printMyString", args)) {
     # TODO: print `myObject.getMyStr()` to the command-line output.
